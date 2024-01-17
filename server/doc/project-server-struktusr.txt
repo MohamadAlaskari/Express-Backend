@@ -1,4 +1,4 @@
-projekt/
+Express-Backend/
 │
 ├── app.js                  # Die Hauptanwendungsdatei, die die Express-App initialisiert.
 │
@@ -23,8 +23,12 @@ projekt/
 │   └── mongodb/            # Modelle für MongoDB.
 │       └── resourceModel.js # Modell für Ressourcen in MongoDB.
 │
-├── middleware/             # Benutzerdefinierte Middleware-Funktionen, z.B. Fehlerbehandlung.
-│   └── errorHandler.js     # Middleware für die zentrale Fehlerbehandlung.
+├── middleware/
+│   ├── errorHandler.js          # Aktualisiert mit erweiterten Funktionen
+│   └── AppError.js              # Neu hinzugefügt für die AppError Klasse
+│   └── ValidationError.js       # Neu hinzugefügt für spezifische Fehlerklassen
+│   └── ...                      # Weitere spezifische Fehlerklassen
+│
 │
 └── utils/                  # Hilfsfunktionen und Utility-Module, z.B. Logger.
-    └── logger.js           # Logger-Modul für die Anwendung.
+    └──...                  # Logger, Hilfsfunktionen, etc.
