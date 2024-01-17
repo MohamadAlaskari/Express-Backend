@@ -5,7 +5,7 @@ const routes = require('./routes');
 //const dbMySQL = require('./config/dbMySQL');
 
 app.use(express.json());
-app.use('/api', routes);
+app.use('', routes);
 
 // Zentrale Fehlerbehandlung
 app.use(require('./middleware/errorHandler'));
