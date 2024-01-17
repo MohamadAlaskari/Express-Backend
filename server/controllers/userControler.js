@@ -40,4 +40,4 @@ deleteUser = (req, res, next) => {
     }
 }
 
-export { getUser, createUser, updateUser, deleteUser }
+module.exports = { getUser, createUser, updateUser, deleteUser }
