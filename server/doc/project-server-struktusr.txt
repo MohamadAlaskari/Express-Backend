@@ -1,0 +1,100 @@
+projekt/
+│
+├── app.js                  # Die Hauptanwendungsdatei, die die Express-App initialisiert.
+│
+├── package.json            # Die NPM-Konfigurationsdatei mit Projektinformationen und Abhängigkeiten.
+│
+├── config/                 # Enthält Konfigurationsdateien für die Datenbankverbindungen.
+│   ├── dbMongo.js          # MongoDB Konfiguration.
+│   └── dbMySQL.js          # MySQL Konfiguration.
+│
+├── routes/                 # Hier werden Routen für die verschiedenen Entitäten definiert.
+│   ├── index.js            # Konsolidiert alle Routen und exportiert sie.
+│   ├── userRoutes.js       # Routen für Benutzer-Entität.
+│   └── resourceRoutes.js   # Routen für Ressourcen-Entität.
+│
+├── controllers/            # Controller-Dateien, die die Logik für die Routen enthalten.
+│   ├── userController.js   # Controller für die Benutzer-Entität.
+│   └── resourceController.js # Controller für die Ressourcen-Entität.
+│
+├── models/                 # Enthält Datenmodelle für MySQL und MongoDB.
+│   ├── mysql/              # Modelle für MySQL-Datenbank.
+│   │   └── userModel.js    # Modell für Benutzer in MySQL.
+│   └── mongodb/            # Modelle für MongoDB.
+│       └── resourceModel.js # Modell für Ressourcen in MongoDB.
+│
+├── middleware/             # Benutzerdefinierte Middleware-Funktionen, z.B. Fehlerbehandlung.
+│   └── errorHandler.js     # Middleware für die zentrale Fehlerbehandlung.
+│
+└── utils/                  # Hilfsfunktionen und Utility-Module, z.B. Logger.
+    └── logger.js           # Logger-Modul für die Anwendung.
+
+
+
+
+    /**
+ * GET route to retrieve data.
+ * This is a simple route that sends a static HTML response.
+ */
+app.get('/', (req, res, next) => {
+    try {
+        // Your logic for the GET request here (if necessary)
+        res.status(200).send('<h1>Hello world</h1>');// 200 ok
+    } catch (error) {
+        // Forward errors to error handling middleware
+        next(error);
+    }
+});
+
+/**
+ * POST route to create new data.
+ * In a real-world scenario, you would handle the creation of new resources here.
+ */
+app.post('/create', (req, res, next) => {
+    try {
+        // Logic for creating new data
+        // Assuming creation is successful
+        res.status(201).send('Data created'); // 201 Created
+    } catch (error) {
+        next(error); // Forward error to error handling middleware
+    }
+});
+
+/**
+ * PUT route to update existing data.
+ * This route would typically include logic to update data in a database.
+ */
+app.put('/update', (req, res, next) => {
+    try {
+        // Logic for updating data
+        // Assuming update is successful
+        res.status(200).send('Data updated'); // 200 OK
+    } catch (error) {
+        next(error); // Forward error to error handling middleware
+    }
+});
+
+/**
+ * DELETE route to delete data.
+ * This route would contain logic to delete data from a database.
+ */
+app.delete('/delete', (req, res, next) => {
+    try {
+        // Logic for deleting data
+        // Assuming delete is successful
+        res.status(204).send(''); // 204 No Content
+    } catch (error) {
+        next(error);// Forward error to error handling middleware
+    }
+});
+
+/**
+ * Error handling middleware.
+ * This middleware logs the error and sends a generic error response.
+ */
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    const status = err.status || 500;
+    const message = err.message || 'An internal server error has occurred.';
+    res.status(status).send(message);
+});
